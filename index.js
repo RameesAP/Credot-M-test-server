@@ -12,22 +12,24 @@ app.use(cookieParser());
 
 // import routers
 import userRoutes from "./routes/user_routes.js";
-// import authRoutes from "./routes/auth_routes.js";
+import authRoutes from "./routes/auth_routes.js";
+import productRoutes from "./routes/product_routes.js";
 
 // usee of routes
 app.use("/api/user", userRoutes);
-// app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/product", productRoutes);
 
 //middleware
-// app.use((error, req, res, next) => {
-//   statusCode = error.statusCode || 500;
-//   const message = error.message || "internal server Error";
-//   return res.status(statusCode).json({
-//     success: false,
-//     statusCode,
-//     message,
-//   });
-// });
+app.use((error, req, res, next) => {
+  statusCode = error.statusCode || 500;
+  const message = error.message || "internal server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
 
 // DB Connect
 mongoose
