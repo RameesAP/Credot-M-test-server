@@ -7,6 +7,16 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+
+
+app.use(
+  cors({
+    origin: "https://credotramees.netlify.app",
+    credentials: true,
+  })
+);
+
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
@@ -24,12 +34,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
 
 // middleware
-app.use(
-  cors({
-    origin: "https://credotramees.netlify.app",
-    credentials: true,
-  })
-);
+
 
 app.use((error, req, res, next) => {
   statusCode = error.statusCode || 500;
