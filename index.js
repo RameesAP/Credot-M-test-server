@@ -25,7 +25,7 @@ app.use("/api/cart", cartRoutes);
 
 // middleware
 app.use(cors({
-  origin: "https://credotramees.netlify.app/",
+  origin: "https://credotramees.netlify.app",
   credentials: true,
 }));
 
@@ -49,6 +49,6 @@ mongoose
     console.error("MongoDB connection error:", error);
   });
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is running on port 5000");
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`Server is running on port ${port}`);
 });
