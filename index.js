@@ -17,13 +17,13 @@ import authRoutes from "./routes/auth_routes.js";
 import productRoutes from "./routes/product_routes.js";
 import cartRoutes from "./routes/cart_routes.js";
 
-// usee of routes
+// use of routes
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
 
-//middleware
+// middleware
 app.use(cors({
   origin: "https://credotbackramees.onrender.com",
   credentials: true,
