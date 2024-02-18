@@ -24,10 +24,12 @@ app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
 
 // middleware
-app.use(cors({
-  origin: "https://credotramees.netlify.app",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "https://credotramees.netlify.app",
+    credentials: true,
+  })
+);
 
 app.use((error, req, res, next) => {
   statusCode = error.statusCode || 500;
@@ -41,14 +43,17 @@ app.use((error, req, res, next) => {
 
 // DB Connect
 mongoose
-  .connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB !!!");
   })
   .catch((error) => {
     console.error("MongoDB connection error:", error);
   });
-
-app.listen(process.env.PORT || 5000, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
