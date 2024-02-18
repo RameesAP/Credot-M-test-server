@@ -25,7 +25,7 @@ app.use("/api/cart", cartRoutes);
 
 // middleware
 app.use(cors({
-  origin: "https://credotbackramees.onrender.com",
+  origin: "https://credotrameess.netlify.app",
   credentials: true,
 }));
 
