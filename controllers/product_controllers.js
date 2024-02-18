@@ -60,7 +60,7 @@ export const getAllProducts = async (req, res) => {
 
     if (qNew) {
       products = await ProductModel.find().sort({ createdAt: -1 }).limit(1);
-    } else if (qCategory) {
+    } else if (qCategory && qCategory.toLowerCase()) {
       products = await ProductModel.find({
         categories: {
           $in: [qCategory],

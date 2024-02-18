@@ -14,11 +14,13 @@ app.use(cookieParser());
 import userRoutes from "./routes/user_routes.js";
 import authRoutes from "./routes/auth_routes.js";
 import productRoutes from "./routes/product_routes.js";
+import cartRoutes from "./routes/cart_routes.js";
 
 // usee of routes
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 //middleware
 app.use((error, req, res, next) => {
