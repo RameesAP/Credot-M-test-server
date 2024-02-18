@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
@@ -23,6 +24,11 @@ app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
 
 //middleware
+app.use(cors({
+  origin: "https://credotbackramees.onrender.com",
+  credentials: true,
+}));
+
 app.use((error, req, res, next) => {
   statusCode = error.statusCode || 500;
   const message = error.message || "internal server Error";
@@ -35,12 +41,12 @@ app.use((error, req, res, next) => {
 
 // DB Connect
 mongoose
-  .connect(process.env.MONGO)
+  .connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log("Connected to Mongo DB !!!");
+    console.log("Connected to MongoDB !!!");
   })
   .catch((error) => {
-    console.log(error);
+    console.error("MongoDB connection error:", error);
   });
 
 app.listen(process.env.PORT, () => {
