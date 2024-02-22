@@ -72,19 +72,24 @@ export const userCartProd = async (req, res) => {
     }
 
     // Access the products array and extract relevant details
-    const products = userCart.products.map((product) => ({
-      productId: product.productId._id,
-      quantity: product.quantity,
-      productDetails: {
+    const products = userCart.products.map((product) => {
+      const { productId, quantity } = product;
+      const productDetails = productId ? {
         // Extract details from the populated product
         // Assuming 'name' and 'price' as properties, adjust as per your schema
-        name: product.productId.title,
-        price: product.productId.price,
-        image: product.productId.img,
-        instock: product.productId.instock,
+        name: productId.title || "Product Name Not Available",
+        price: productId.price || 0,
+        image: productId.img || [],
+        instock: productId.instock || false,
         // Add more properties if needed
-      },
-    }));
+      } : null;
+
+      return {
+        productId: productId ? productId._id : null,
+        quantity: quantity || 0,
+        productDetails,
+      };
+    });
 
     res.status(200).json({ products, message: "User cart found" });
   } catch (error) {
