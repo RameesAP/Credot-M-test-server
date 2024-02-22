@@ -10,7 +10,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://credotramees.netlify.app",
+    // origin: "https://credotramees.netlify.app",
+    origin: "https://credotrameess.netlify.app",
     credentials: true,
   })
 );
